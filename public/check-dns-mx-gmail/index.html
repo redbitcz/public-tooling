@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Ověření e-mailové schránky na Google Workspace</title>
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="app.css">
+
+</head>
+<body>
+<h1>Ověření e-mailové schránky na Google Workspace</h1>
+
+<div id="app">
+    <p>Zadejte doménu (a nebo e-mailovou adresu):</p>
+    <form v-on:submit.prevent="resolve">
+        <input type="text" v-model="inputdomain" placeholder="domena.cz" inputmode="email"
+               pattern="(.*@)?[.\w-]+\.[a-z]{2,}" required>
+        <button type="submit">Ověřit</button>
+    </form>
+    <div v-if="userError" class="red" v-cloak> Chyba: {{ userError }}</div>
+    <div v-if="resultError" v-cloak>
+        <h2>Došlo k chybě</h2>
+        Omlouváme se, ale nepodařilo se nám informace zjsitit, protože při zpracování požadavku došlo k chybě:
+        <span class="red">{{ resultError }}</span><br>
+        Zkuste to prosím znovu.
+    </div>
+
+    <div v-if="status!==null" v-cloak>
+        <div v-if="status==='loading'" class="loading">
+            <span class="lds-dual-ring"></span> Načítáme…
+        </div>
+        <div v-else>
+            <h2>Naše zjištění</h2>
+            <p v-if="status===true">
+                E-maily adresované na doménu <span class="mono">{{ resultdomain }}</span>
+                <span class="green">jsou</span> doručovány na servery Google, doména <strong>
+                <span class="green">je</span> pravděpodobně provozovaná na Google Workspace</strong>.
+            </p>
+            <p v-if="status===false">
+                E-maily adresované na doménu <span class="mono">{{ resultdomain }}</span>
+                <span class="red">nejsou</span> doručovány na servery Google, doména <strong>pravděpodobně
+                <span class="red">není</span> provozovaná na Google Workspace</strong>.
+            </p>
+            <p v-if="resultNote" class="note">
+                Upozornění: {{ resultNote }}
+            </p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    Provozuje <a href="https://www.redbit.cz/" target="_blank" rel="noopener">Redbit s.r.o.</a> |
+    Data zajišťuje <a href="https://dns.google/" target="_blank" rel="noopener">Google Public DNS</a> |
+    <a href="https://developers.google.com/speed/public-dns/privacy" target="_blank" rel="noopener">
+        Pravidla zpracování dat</a> (anglicky)
+</footer>
+</body>
+</html>

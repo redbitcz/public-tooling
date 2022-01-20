@@ -1,0 +1,96 @@
+html {
+    background-color: lightgray;
+    font-family: "Roboto Condensed", sans-serif;
+    color: #222;
+    padding: 0.5rem 1rem;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+h1 {
+    font-size: 1.7rem;
+}
+
+.red {
+    color: red;
+    font-weight: bold;
+}
+
+.green {
+    color: green;
+    font-weight: bold;
+}
+
+.note {
+    color: saddlebrown;
+    font-weight: bold;
+}
+
+.mono {
+    border-radius: 0.3em;
+    padding: 0 0.2em;
+    margin-right: 0.2em;
+    background-color: rgba(128, 128, 128, 0.2);
+}
+
+input {
+    margin-right: 1em;
+}
+
+input:invalid {
+    background-color: bisque;
+}
+
+.loading {
+    margin: 1em auto;
+    color: gray;
+}
+
+footer {
+    margin-top: 2em;
+    font-size: 0.7em;
+    color: gray;
+    text-align: center;
+}
+
+footer a {
+    color: gray;
+    text-decoration: none;
+}
+
+footer a:hover, footer a:focus, footer a:active {
+    color: black;
+    text-decoration: underline;
+}
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    padding-right: 0.5em;
+    position: relative;
+    top: 0.1em
+}
+
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 0.8em;
+    height: 0.8em;
+    margin: 0;
+    border-radius: 50%;
+    border: 0.185em solid;
+    border-color: gray transparent gray transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
