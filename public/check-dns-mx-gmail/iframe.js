@@ -2,7 +2,7 @@
     const script = document.currentScript;
 
     if (script === null) {
-        console.error("Error: Unable to recognize script tag, inable to inset IFrame to Document");
+        console.error("Error: Unable to recognize script tag, unable to insert IFrame to Document");
     }
 
     let url = script.src;
@@ -24,10 +24,17 @@
 
     window.addEventListener("message", (message) => {
         if (message.source !== iframe.contentWindow
-            && message.data?.type !== 'contentResize') {
+            || message.data?.type !== 'contentResize') {
             return;
         }
 
-        iframe.height = message.data.height;
+        const height = parseFloat(message.data?.height).toString();
+
+        if (height === "0.0" || height === "NaN") {
+            return;
+        }
+
+        iframe.height = height;
+        iframe.style.height = height + 'px';
     }, {capture: false, passive: true});
 })();
