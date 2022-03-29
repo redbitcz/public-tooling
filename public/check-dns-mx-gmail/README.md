@@ -29,3 +29,12 @@ Výška Iframe se automaticky přizpůsobuje svému obsahu. Pokud je to nežádo
 ```html
 <script src="https://redbit-tooling.web.app/check-dns-mx-gmail/iframe.js" async data-no-resize></script>
 ```
+
+Pokud má být Iframe vložen na jiné místo, než je aktuální pozice značky `<script>`, lze definovat ID elementu, do něhož
+bude Iframe vložen.
+
+```html
+<div id="target"></div>
+
+<script src="https://redbit-tooling.web.app/check-dns-mx-gmail/iframe.js" async data-bind-to="target"></script>
+```
