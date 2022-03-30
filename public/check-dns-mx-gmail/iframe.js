@@ -16,7 +16,13 @@
         }
     }
 
-    script.parentNode.insertBefore(iframe, script);
+    const bindTargedName = script.dataset.bindTo;
+    const bindTarged = bindTargedName ? document.getElementById(bindTargedName) : null;
+    if(bindTarged === null) {
+        script.parentNode.insertBefore(iframe, script);
+    } else {
+        bindTarged.appendChild(iframe);
+    }
 
     if (script.hasAttribute('data-no-resize')) {
         return;
